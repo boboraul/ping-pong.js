@@ -34,17 +34,17 @@ let computerSpeed;
 if (isMobile.matches) {
   speedY = -2;
   speedX = speedY;
-  computerSpeed = 4;
+  computerSpeed = 6;
 } else {
   speedY = -1;
   speedX = speedY;
-  computerSpeed = 3;
+  computerSpeed = 6
 }
 
 // Score
 let playerScore = 0;
 let computerScore = 0;
-const winningScore = 3;
+const winningScore = 10;
 let isGameOver = true;
 let isNewGame = true;
 
@@ -197,6 +197,7 @@ function showGameOverEl(winner) {
 function gameOver() {
   if (playerScore === winningScore || computerScore === winningScore) {
     isGameOver = true;
+    isNewGame = false;
     // Set Winner
     const winner = playerScore === winningScore ? 'Player' : 'Computer';
    
@@ -218,10 +219,13 @@ function animate() {
 
 // Start Game, Reset Everything
 function startGame() {
+  console.log(isGameOver);
   if (isGameOver && !isNewGame) {
     body.removeChild(gameOverEl);
     canvas.hidden = false;
+   
   }
+  
   isGameOver = false;
   isNewGame = true;
   playerScore = 0;
